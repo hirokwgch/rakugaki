@@ -1,0 +1,76 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+canvas#whiteboard {
+    /*border: 1px solid  #333333;*/
+    background-color: white;
+}
+
+body {
+    width: 340px;
+    height: 400px;
+    background-color: whitesmoke;
+}
+
+
+.canvas-area {
+    width: 340px;
+    height: 380px;
+    text-align: center;
+    background-color: lightgray;
+    border-radius:5px;
+}
+
+.button {
+    font-size: 100%;
+    color: #333333;
+    background-color:whitesmoke;
+    border:1px solid slategray;
+    padding:3px 10px;
+    margin: 10px;
+    border-radius:5px;
+    box-shadow:0px 0px 10px whitesmoke;
+    cursor:hand;
+    text-decoration: none;
+}
+
+#title-raku {
+    font-size: 150%;
+    font-family: 'arial unicode ms', sans-serif;
+}
+
+#title-alphabet {
+    font-size: 80%;
+    font-family: Tahoma, sans-serif;
+}
+
+#title {
+    font-family: 'arial unicode ms', sans-serif;
+}
+
+#clear {
+    float: left
+}
+
+#download {
+    float: right
+}
+
+#footer {
+    font-size: 70%;
+    margin: 20px;
+    text-align: center;
+}
+

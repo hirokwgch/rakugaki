@@ -1,0 +1,21 @@
+<h1><span id="title-raku">楽</span>がき <span id="title-alphabet">Rakugaki</span></h1>
+<div class="load-image-area">
+  <p>
+  あなたの写真に楽に絵をかけます。
+  </p>
+  <input type="file" id="files" name="files[]" accept='image/*'/>
+</div>
+<div class="canvas-area">
+  <br />
+  <canvas id="whiteboard" width="300px" height="300px"></canvas>
+  <script type="text/javascript" charset="utf-8" src="/draw.es6"></script>
+  <script type="text/javascript">
+    if (window.File && window.FileReader && window.FileList && window.Blob) {
+    } else {
+      alert('The File APIs are not fully supported in this browser.');
+    }
+  </script>  
+  <br/>
+  <input id="clear" class="button" type="button" name="clear" value="クリア" onclick="clean();">
+  <a href="#" id="download" class="button" download="canvas.png" onclick="beforeDownload('download')">ダウンロード</a>
+</div>

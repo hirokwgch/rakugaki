@@ -1,0 +1,23 @@
+{
+  "name": "canvas",
+  "description": "",
+  "scripts": {
+    "postdeploy": "bundle exec rails s -d"
+  },
+  "env": {
+    "RAILS_ENV": "production"
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    },
+    {
+      "url": "heroku/ruby"
+    }
+  ]
+}
