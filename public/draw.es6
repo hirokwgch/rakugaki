@@ -45,6 +45,33 @@ class Line {
     }
 }
 
+// 最大保存制限付きのスタック
+class LimitedStack {
+    constructor(max) {
+        this.array = new Array();
+        this.max = max;
+    }
+
+    push(o) {
+        this.array.push(o);
+        if (this.size() > this.max) {
+            this.array.shift();
+        }
+    }
+
+    pop()  {
+        if( this.size() > 0 ) {
+            return this.array.pop();
+        } else {
+            return null;
+        }
+    }
+
+    size() {
+        return this.array.length;
+    }
+}
+
 // Main
 supportTouch = 'ontouchend' in document;
 
@@ -53,6 +80,8 @@ var ctx = canvas.getContext('2d');
 fillCanvas(ctx,255,255,255);
 var line = new Line(canvas);
 var imgSrc = null;
+var MAX_HISTORY_SIZE = 100;
+var canvasHistory = new LimitedStack(MAX_HISTORY_SIZE);
 
 addEvent(canvas);
 document.getElementById('files').addEventListener('change', onLoadFile, false);
@@ -114,6 +143,7 @@ function drawImg(imgSrc) {
 //描き始め
 function onClick(e) {
     line.start(x(e), y(e));
+    canvasHistory.push(getImageUrl());
 }
 
 //描き終わり
@@ -141,16 +171,24 @@ function clean() {
     if (imgSrc == null) {
         fillCanvas(ctx,255,255,255);
     } else {
-        fillCanvas(ctx,0,0,0);
         drawImg(imgSrc);
     }
 }
 
-function beforeDownload(id) {
-    document.getElementById(id).href = canvas.toDataURL("image/png");
+function undo() {
+    if (canvasHistory.size() > 0) {
+        drawImg(canvasHistory.pop());
+    }
 }
 
-// utility
+function beforeDownload(id) {
+    document.getElementById(id).href = getImageUrl();
+    document.getElementById(id).download = `rakugaki_${dateNow()}.png`
+}
+
+function getImageUrl() {
+    return canvas.toDataURL("image/png");
+}
 
 function x(e) {
     if (supportTouch) {
@@ -170,6 +208,16 @@ function y(e) {
 
 function rect() {
     return canvas.getBoundingClientRect();
+}
+
+function dateNow() {
+    var date = new Date();
+    var month = ('0' + (date.getMonth() + 1)).slice(-2);
+    var day = ('0' + date.getDate()).slice(-2);
+    var hours = ('0' + date.getHours()).slice(-2);
+    var minutes = ('0' + date.getMinutes()).slice(-2);
+
+    return `${month}${day}_${hours}${minutes}`
 }
 
 // TODO: ブラウザごとに値の変化が違うらしい

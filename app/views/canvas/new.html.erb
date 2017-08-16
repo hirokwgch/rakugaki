@@ -9,13 +9,8 @@
   <br />
   <canvas id="whiteboard" width="300px" height="300px"></canvas>
   <script type="text/javascript" charset="utf-8" src="/draw.es6"></script>
-  <script type="text/javascript">
-    if (window.File && window.FileReader && window.FileList && window.Blob) {
-    } else {
-      alert('The File APIs are not fully supported in this browser.');
-    }
-  </script>  
   <br/>
   <input id="clear" class="button" type="button" name="clear" value="クリア" onclick="clean();">
+  <input id="undo" class="button" type="button" name="undo" value="もどす" onclick="undo();">
   <a href="#" id="download" class="button" download="canvas.png" onclick="beforeDownload('download')">ダウンロード</a>
 </div>
